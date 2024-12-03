@@ -50,30 +50,6 @@ terraform apply
 
 ---
 
-#### **Task 2: Initialize, Plan, and Apply**
-**Objective:** Execute Terraform commands to validate, plan, and deploy the configuration.  
-
-1. Run the following commands and note their effects:
-   - Initialize the project:
-     ```bash
-     terraform init
-     ```
-   - Create a plan:
-     ```bash
-     terraform plan
-     ```
-   - Apply the configuration:
-     ```bash
-     terraform apply
-     ```
-2. Confirm the creation of resources in the GCP Console.
-
-**Expected Outcome:** 
-- Terraform initializes and successfully provisions the instance.  
-- The Compute Engine instance appears in the GCP Console.
-
----
-
 #### **Task 3: Modify and Reapply Configuration**
 **Objective:** Modify the Terraform configuration and see how Terraform manages changes.  
 
