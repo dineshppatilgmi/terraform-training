@@ -3,27 +3,25 @@
 #### **Task 1: Understand and Write a Basic Configuration**
 **Objective:** Learn the basics of HCL by writing a Terraform configuration to create a simple resource in GCP.  
 
-1. Create a directory for your Terraform project, e.g., `basic-terraform-project`.
-2. Write a configuration file named `main.tf` with the following:
+###### 1. Create a directory for your Terraform project, e.g., `basic-terraform-project`.
+###### 2. Write a configuration file named `main.tf` with the following:
    - Provider: GCP
    - Resource: Create a Google Storage Bucket.
-3. Example skeleton to follow:
-   ```hcl
+###### 3. Example skeleton to follow:
+```Bash
   provider "google" {  
      project = "your-project-id" # Replace this project id shared in session  
      region  = "us-central1"
    }  
 
-  resource "google_storage_bucket" "trainingstorage" {
-  name  = "dinesh-patil-tf-trainning"
-  location  = "US-central5"
-  force_destroy = true
-  uniform_bucket_level_access = true
+  resource "google_storage_bucket" "trainingstorage" {  
+      name  = "dinesh-patil-tf-trainning"  
+      location  = "US-central5"  
+      force_destroy = true  
+      public_access_prevention = "enforced"
+  }
 
-  public_access_prevention = "enforced"
-}
-
-   ```
+```
 
 **Expected Outcome:** A valid `main.tf` file.
 
