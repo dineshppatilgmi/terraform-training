@@ -16,14 +16,37 @@
 
   resource "google_storage_bucket" "trainingstorage" {  
       name  = "dinesh-patil-tf-trainning"  
-      location  = "US-central5"  
+      Iocation  = "us-central5"  
       force_destroy = true  
       public_access_prevention = "enforced"
   }
 
 ```
 
+###### 4. Run below commands to apply above configuration
+```bash
+terraform init
+
+terraform fmt
+## Check how your code formatted nicely after this command
+
+terraform validate
+## This command will check the code for syntax errors
+
+terraform plan
+## This will provide execution plan for your declared code
+
+terraform apply
+## This will actually go and apply your code.
+```
+> **WARNING**:  Check out what is problem with code above  
+> If you have noticed here `terraform validate` validated just   
+> syntax not the location value of your region in gcp.   
+
+
+
 **Expected Outcome:** A valid `main.tf` file.
+
 
 ---
 
