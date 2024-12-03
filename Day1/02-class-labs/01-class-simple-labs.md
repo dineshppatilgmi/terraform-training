@@ -39,31 +39,33 @@ terraform plan
 terraform apply
 ## This will actually go and apply your code.
 ```
-> **WARNING**:  Check out what is problem with code above  
-> If you have noticed here `terraform validate` validated just   
-> syntax not the location value of your region in gcp.   
+> **WARNING**:  Check out what is problem with code above If you have noticed here `terraform validate` validated just syntax not the location value of your region in gcp. 
 
-
-
-**Expected Outcome:** A valid `main.tf` file.
-
-
+**Expected Outcome:** Bucket is created in the cloud.
 ---
 
 #### **Task 2: Modify and Reapply Configuration**
 **Objective:** Modify the Terraform configuration and see how Terraform manages changes.  
 
-1. Update the instance's machine type in `main.tf` to `n1-standard-2`:
-   ```hcl
-   machine_type = "n1-standard-2"
-   ```
-2. Create a new plan and apply the changes:
-   ```bash
-   terraform plan
-   terraform apply
-   ```
-3. Verify that Terraform updates the instance in the GCP Console.
+##### Demonstrate Changes in Attributes
+**Update Configuration**: Change an attribute that modifies the existing resource without recreation.
 
+```Bash
+resource "google_storage_bucket" "trainingstorage" {  
+    name  = "dinesh-patil-tf-training"  
+    location  = "us-central5"  
+    force_destroy = true  
+    public_access_prevention = "enforced" 
+    labels = {
+        environment = "training"
+        owner       = "dinesh-patil" # change this name don't leave it for my ownership :stuck_out_tongue_winking_eye:
+    }
+}
+```
+
+Commands to Run:
+Run terraform plan to see how Terraform describes changes in the public_access_prevention attribute. Look for lines marked as ~ indicating an update in place.
+Run terraform apply to apply the changes.
 **Expected Outcome:** 
 - Terraform modifies the existing instance instead of creating a new one.  
 - Students understand how Terraform manages the "desired state."
