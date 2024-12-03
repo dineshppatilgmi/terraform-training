@@ -50,7 +50,7 @@ terraform apply
 
 ---
 
-#### **Task 3: Modify and Reapply Configuration**
+#### **Task 2: Modify and Reapply Configuration**
 **Objective:** Modify the Terraform configuration and see how Terraform manages changes.  
 
 1. Update the instance's machine type in `main.tf` to `n1-standard-2`:
