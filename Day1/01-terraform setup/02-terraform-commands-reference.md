@@ -5,8 +5,9 @@ When using Terraform, it's essential to follow the correct sequence to ensure sm
 ---
 
 #### **Step 1: Initialize the Working Directory**
-**Command**:  
-```bash
+**Command**:
+
+```Bash
 terraform init
 ```
 

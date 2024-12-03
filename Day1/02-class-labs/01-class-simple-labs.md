@@ -1,13 +1,14 @@
-### **Tasks for Participants: Writing and Applying Terraform Configurations**
+# **Tasks for Participants: Writing and Applying Terraform Configurations**
 
-#### **Task 1: Understand and Write a Basic Configuration**
+## **Task 1: Understand and Write a Basic Configuration**
 **Objective:** Learn the basics of HCL by writing a Terraform configuration to create a simple resource in GCP.  
 
-###### 1. Create a directory for your Terraform project, e.g., `basic-terraform-project`.
-###### 2. Write a configuration file named `main.tf` with the following:
+### 1. Create a directory for your Terraform project, e.g., `basic-terraform-project`.
+### 2. Write a configuration file named `main.tf` with the following:
    - Provider: GCP
    - Resource: Create a Google Storage Bucket.
-###### 3. Example skeleton to follow:
+### 3. Example skeleton to follow:
+
 ```Bash
   provider "google" {  
      project = "your-project-id" # Replace this project id shared in session  
@@ -23,7 +24,8 @@
 
 ```
 
-###### 4. Run below commands to apply above configuration
+### 4. Run below commands to apply above configuration
+
 ```bash
 terraform init
 
@@ -44,11 +46,11 @@ terraform apply
 **Expected Outcome:** Bucket is created in the cloud.
 ---
 
-#### **Task 2: Modify and Reapply Configuration**
+## **Task 2: Modify and Reapply Configuration**
 **Objective:** Modify the Terraform configuration and see how Terraform manages changes.  
 
-##### Demonstrate Changes in Attributes
-**Update Configuration**: Change an attribute that modifies the existing resource without recreation.
+### Demonstrate Addition of attributes in resources
+**Add Configuration**: Change an attribute that modifies the existing resource without recreation.
 
 ```Bash
 resource "google_storage_bucket" "trainingstorage" {  
@@ -61,14 +63,60 @@ resource "google_storage_bucket" "trainingstorage" {
         owner       = "dinesh-patil" # change this name don't leave it for my ownership...
     }
 }
+
 ```
 
-Commands to Run:
-Run terraform plan to see how Terraform describes changes for addition of label.  Look for lines marked as + indicating an add in place.
-Run terraform apply to apply the changes.
+**Commands to Run:**
+
+1. Run `terraform plan` to see how Terraform describes changes for addition of label. Look for lines marked as + indicating an add in place.
+
+2. Run `terraform apply` to apply the changes.
+
 **Expected Outcome:** 
 - Terraform modifies the existing bucket instead of creating a new one.  
 ---
+
+### Demonstrate Changes in Attributes
+**Update Configuration**: Change a attribute that modifies the existing resource without recreation.
+
+```Bash
+resource "google_storage_bucket" "trainingstorage" {  
+    name  = "dinesh-patil-tf-training"  
+    location  = "us-central5"  
+    force_destroy = true  
+    public_access_prevention = "inherited" # Changed from "enforced"
+}
+
+```
+
+**Commands to Run:**
+1. Run `terraform plan` to see how Terraform describes changes in the public_access_prevention attribute. Look for lines marked as ~ indicating an update in place.
+2. Run terraform apply to apply the changes.
+
+
+### Demonstrate Changes that Require Resource Recreation
+**Update Configuration**: Change an attribute that forces resource recreation.
+```bash
+resource "google_storage_bucket" "trainingstorage" {  
+    name  = "dinesh-patil-tf-training"  
+    location  = "us-east4"  # Changed from "us-central*"
+    force_destroy = true  
+    public_access_prevention = "enforced"  
+}
+
+```
+
+**Commands to Run:**
+
+1. Run terraform plan to observe that Terraform will mark the resource for recreation (- for destroy and + for create).
+Example output:
+```Bash
+-/+ google_storage_bucket.trainingstorage
+    location: "us-central5" => "us-east1" (forces new resource)
+```
+2. Run `terraform apply` to recreate the resource in the new location.
+
+
 
 ### **Summary of Tasks**
 1. **Write a basic Terraform configuration file** using HCL.
@@ -77,9 +125,15 @@ Run terraform apply to apply the changes.
 
 ---
 
-#### **Home Extension**
-- Add another resource (e.g., a GCP storage bucket) to your existing configuration and apply it.
-- Experiment with destroying and recreating the infrastructure using:
-  ```bash
-  terraform destroy
-  ```
+### **Points to Highlight**
+
+Terraform uses symbols in the plan to describe changes:  
+* +: New resource creation.  
+* -: Resource deletion.  
+* ~: Inline attribute update.  
+* -/+: Resource recreation (delete and re-create).  
+
+#### The behavior of attributes depends on their immutability:
+1. `Mutable` attributes can be updated in place (e.g., public_access_prevention).
+2. `Immutable` attributes require resource recreation (e.g., location).
+
