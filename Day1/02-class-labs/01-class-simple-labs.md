@@ -58,18 +58,16 @@ resource "google_storage_bucket" "trainingstorage" {
     public_access_prevention = "enforced" 
     labels = {
         environment = "training"
-        owner       = "dinesh-patil" # change this name don't leave it for my ownership :stuck_out_tongue_winking_eye:
+        owner       = "dinesh-patil" # change this name don't leave it for my ownership...
     }
 }
 ```
 
 Commands to Run:
-Run terraform plan to see how Terraform describes changes in the public_access_prevention attribute. Look for lines marked as ~ indicating an update in place.
+Run terraform plan to see how Terraform describes changes for addition of label.  Look for lines marked as + indicating an add in place.
 Run terraform apply to apply the changes.
 **Expected Outcome:** 
-- Terraform modifies the existing instance instead of creating a new one.  
-- Students understand how Terraform manages the "desired state."
-
+- Terraform modifies the existing bucket instead of creating a new one.  
 ---
 
 ### **Summary of Tasks**

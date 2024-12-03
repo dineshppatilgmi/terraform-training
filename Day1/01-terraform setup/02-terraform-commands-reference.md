@@ -60,6 +60,16 @@ terraform apply tfplan
 - If no plan file is specified, Terraform will create and apply a new plan interactively.  
 - **Why?** Deploys the desired state of your infrastructure as defined in the configuration files.
 
+
+#### **Step 6: Delete the Infrastructure created using terraform**
+**Command**:  
+```bash
+terraform destory
+```
+
+- The terraform destroy command is used to delete or destroy the resources that Terraform manages, effectively reversing any terraform apply operations.  
+- **Why?** Completely removes all resources defined in your Terraform configuration from the infrastructure provider..
+
 ---
 
 ### **Example Workflow**
@@ -79,16 +89,9 @@ terraform plan -out=tfplan
 
 # Step 5: Apply the changes
 terraform apply tfplan
+
+# Step 6: Delete the Infra
+terraform destroy
 ```
-
----
-
-### **Tips for Effective Workflow**
-1. **Version Control**: Keep your Terraform files in a Git repository for tracking changes.  
-2. **Plan Before Apply**: Always run `terraform plan` to review changes before applying them.  
-3. **State Management**: Use a remote backend for the Terraform state file to ensure consistency and collaboration in a team.  
-4. **Use Variables**: Pass variables via `-var` or `-var-file` to make configurations dynamic and reusable.  
-
----
 
 This sequence ensures your infrastructure is managed efficiently, with minimal errors or surprises during deployment.
