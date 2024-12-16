@@ -29,6 +29,8 @@ provider "google" {
 This sets the backend to use a specific state file path.
 </details>
 
+---
+
 ## Task 2: 
 - **Question**: create a GCP Storage Bucket with a dynamic name using a variable? Use the random_id resource from random provider to add suffix to the bucket name using below requirement. 
   - take two variable firstname and lastname
@@ -69,6 +71,8 @@ resource "google_storage_bucket" "bucket" {
 </details>
 </details>
 
+---
+
 ## Task 3: 
 - **Question**: How can you enable uniform bucket-level access using a boolean variable?
 <details>
@@ -96,6 +100,8 @@ resource "google_storage_bucket" "bucket" {
 ```
 </details>
 
+---
+
 ## Task 4:  
 - **Question:** Create a terraform config which will accept input for storage class by variable `storage-class` and configure storage_class (which should not accept the class `NEARLINE`,`COLDLINE`,`ARCHIVE`,`MULTI_REGIONAL` )
 <details> <summary>Hint</summary> You can use the `validation` block in the variable definition to restrict specific values for the `storage_class`. Use a regular expression or a condition to ensure the input is not in the restricted list.</details> 
@@ -121,6 +127,8 @@ resource "google_storage_bucket" "bucket" {
 }
 ```
 </details>
+
+---
 
 ## Task 5: 
 - **Question:** Add some lables as below to the storage and pickup maintenance no from variable maintenance_no
@@ -150,6 +158,7 @@ resource "google_storage_bucket" "bucket" {
 ```
 </details>
 </details>
+
 ---
 
 ## Task 6: 
