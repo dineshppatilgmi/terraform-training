@@ -32,6 +32,8 @@ resource "google_storage_bucket" "workspace_bucket" {
 
 </details>
 
+---
+
 ## Task 2: 
 - **Question**: How can you ensure the storage bucket is created in us-central1 for sbx and us-central2 for dev workspaces?.
 <details>
@@ -70,6 +72,8 @@ resource "google_storage_bucket" "workspace_bucket" {
 
 </details>
 
+---
+
 ## Task 3: 
 - **Question**: How do you list all the resources managed by Terraform in a specific workspace like sbx or dev?.
 <details>
@@ -95,6 +99,8 @@ terraform state list
 ```
 
 </details>
+
+---
 
 ## Task 4: 
 - **Question**: How do you remove a specific resource from the state file in the sbx workspace without deleting the actual resource?.
